@@ -1,0 +1,235 @@
+{% extends "./header.html" %}
+{% load static %}
+{% block content%}
+    <section>
+        <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+        <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+        <h5>INSTRUCTION</h5>
+        <ol>
+            <li>This form/section intends to invite information and tips on violations/manipilations of the social quality and integrity.</li>
+            <li>This site treat all information receives under this section as confidential and does not disclose such information to anyone, unless required by state, regulation or court of law.</li>
+            <li>The individual has to submit their name & email in the form given below.</li>
+        </ol>
+    </section>
+    <div class="map-section">
+        <div class="form-section" style="width:950px; height:1200px" id="map"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11804731.595852831!2d78.26971981126592!3d24.066245722951216!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30635ff06b92b791%3A0xd78c4fa1854213a6!2sIndia!5e0!3m2!1sen!2sin!4v1639022638610!5m2!1sen!2sin" width="950" height="1200" style="border:0;" allowfullscreen="" loading="lazy"></iframe></div>
+            <section class="details">
+                <form action="./addtipoff" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                       <select name="state" type="text" class="form-control" placeholder="State">
+                         <option value="">Select a state...</option>
+                         <option value="AN">Andaman and Nicobar Islands</option>
+                         <option value="AP">Andhra Pradesh</option>
+                         <option value="AR">Arunanchal Pradesh</option>
+                         <option value="AS">Assam</option>
+                         <option value="BR">Bihar</option>
+                         <option value="CH">Chandigarh</option>
+                         <option value="CG">Chhattisgarh</option>
+                         <option value="DN">Dadra and Nagar Haveli</option>
+                         <option value="DD">Daman and Diu</option>
+                         <option value="DL">Delhi</option>
+                         <option value="GA">Goa</option>
+                         <option value="GJ">Gujrat</option>
+                         <option value="HR">Haryana</option>
+                         <option value="HP">Himanchal Pradesh</option>
+                         <option value="JK">Jammu and Kashmir</option>
+                         <option value="JH">Jharkhand</option>
+                         <option value="KA">Karnataka</option>
+                         <option value="KL">Kerala</option>
+                         <option value="LA">Ladakh</option>
+                         <option value="LD">Lakshadweep</option>
+                         <option value="MP">Madhya Pradesh</option>
+                         <option value="MH">Maharashtra</option>
+                         <option value="MN">Manipur</option>
+                         <option value="ML">Meghalaya</option>
+                         <option value="MZ">Mizoram</option>
+                         <option value="NL">Nagaland</option>
+                         <option value="OD">Odisha</option>
+                         <option value="PB">Punjab</option>
+                         <option value="PY">Puducherry</option>
+                         <option value="RJ">Rajasthan</option>
+                         <option value="SK">Sikkim</option>
+                         <option value="TN">Tamil Nadu</option>
+                         <option value="TS">Telangana</option>
+                         <option value="TR">Tripura</option>
+                         <option value="UP">Uttar Pradesh</option>
+                         <option value="UK">Uttarakhand</option>
+                         <option value="WB">West Bengal</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                        <input name="district" type="text" class="form-control" placeholder="District">
+                    </div>
+                    <div class="form-group">
+                        <input name="pincode" type="number" class="form-control" placeholder="Pin Code">
+                    </div>
+                    <div class="form-group">
+                        <select name="incidence" id="incidence" class="form-control" placeholder="Choose the Nature of Incidence..." onchange="showDiv(this)">
+                            <option value="">Select the Nature of Incidence...</option>
+                            <option value="1">Criminal</option>
+                            <option value="2">Theft</option>
+                            <option value="3">Cyber Related</option>
+                            <option value="4">Homicide</option>
+                            <option value="5">Terrorist Attack</option>
+                            <option value="6">Child Abuse</option>
+                            <option value="7">Harrasement/Domestic Abuse</option>
+                            <option value="8">Corruption</option>
+                            <option value="9">Smuggling</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="hidden_div" style="display:none;">
+                         <select name="type" id="type" class="form-control" placeholder="Existing_or_Other" onchange="showDiv1(this)">
+                             <option value="">Select either it is Existing or Others/Future</option>
+                             <option value="01">Existing</option>
+                             <option value="02">Others/Future</option>
+                         </select>
+                    </div>
+
+                    <div class="form-group" id="hidden_div1" style="display:none">
+                        <select name="case-id" id="case-id" class="form-control" placeholder="Listed_Cases">
+                            <option value="">Choose one of the cases listed below for which you have information about...</option>
+                            <option value="501">ABC-CASE_ID-501</option>
+                            <option value="502">XYZ-CASE_ID-502</option>
+                            <option value="000">None</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="hidden_div2" style="display:none">
+                        <input name="shortdesc" type="text" class="form-control" placeholder="Short Description or a Title about the Information you know">
+                    </div>
+
+                    <script type="text/javascript">
+                        function showDiv1(select){
+                           if(select.value==1){
+                            document.getElementById('hidden_div1').style.display = "block";
+                            document.getElementById('hidden_div2').style.display = "none";
+                           } else if(select.value==2){
+                            document.getElementById('hidden_div2').style.display = "block";
+                            document.getElementById('hidden_div1').style.display = "none";
+                           } else{
+                               document.getElementById('hidden_div1').style.display = "none";
+                               document.getElementById('hidden_div2').style.display = "none";
+                           }
+                        } 
+                    </script>
+                    
+                    <script type="text/javascript">
+                        function showDiv(select){
+                            if(select.value==1){
+                                document.getElementById('hidden_div').style.display = "block";
+                            } else if(select.value==2){
+                                document.getElementById('hidden_div').style.display = "block";
+                            } else if(select.value==3){
+                                document.getElementById('hidden_div').style.display = "block";
+                            } else if(select.value==4){
+                                document.getElementById('hidden_div').style.display = "block";
+                            } else if(select.value==5){
+                                document.getElementById('hidden_div').style.display = "block";
+                            } else if(select.value==6){
+                                document.getElementById('hidden_div').style.display = "block";
+                            } else if(select.value==7){
+                                document.getElementById('hidden_div').style.display = "block";
+                            } else if(select.value==8){
+                                document.getElementById('hidden_div').style.display = "block";
+                            } else if(select.value==9){
+                                document.getElementById('hidden_div').style.display = "block";
+                            }else{
+                                document.getElementById('hidden_div').style.display = "none";
+                            }
+                         } 
+                    </script>
+                    <div class="form-group">
+                        <textarea name="message" class="form-control" id="" cols="30" rows="10" placeholder="Message" style="margin-top:10px;"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="myfile">Upload a file related to the incident (if any)</label>
+                        <input type="file" id="myfile" name="myfile" multiple="multiple" <a href="/media"></a>>
+                    </div>
+                    <div class="form-group">
+                        <h2><center>Questionaire for Anonymous tip-offs</center></h2>
+                        <h3>General</h3>
+                        <select name="gender" id="gender" class="form-control" placeholder="Gender">
+                            <option value="">Specify Your Gender</option>
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+                            <option value="O">Others</option>
+                            <option value="X">Don't want to Share</option>
+                        </select>
+                        <input name="mother-tongue" id="mother-tongue" type="text" class="form-control" placeholder="Please write your Mother Tongue here" style="margin-top: 10px;">
+                        <select name="age" id="age" class="form-control" placeholder="Age" style="margin-top: 10px;">
+                           <option value="">Specify Your Age</option>
+                           <option value="0-15">0-15</option>
+                           <option value="15-30">15-30</option>
+                           <option value="30-50">30-50</option>
+                           <option value="50-75">50-75</option>
+                           <option value="X">Don't want to Share</option>
+                       </select>
+                       <select name="qualification" id="qualification" class="form-control" placeholder="Educational Qualification" style="margin-top: 10px;">
+                           <option value="">Specify Your Educational Qualification</option>
+                           <option value="Illiterate">Illiterate</option>
+                           <option value="Below 10th">Below 10th</option>
+                           <option value="Between 10th to 12th">Between 10th to 12th</option>
+                           <option value="Graduate and above">Graduate and above</option>
+                           <option value="X">Don't want to Share</option>
+                       </select>
+                       <select name="about-case" id="about-case" class="form-control" placeholder="About-Case" style="margin-top: 10px;">
+                           <option value="">How do you come to know about this case?</option>
+                           <option value="News">News</option>
+                           <option value="WhatsApp">WhatsApp</option>
+                           <option value="Media-Newspaper">Media Newspaper</option>
+                           <option value="Through-Someone">Through Someone</option>
+                           <option value="X">Any Other</option>
+                       </select>
+                       <select name="relation" id="relation" class="form-control" placeholder="Relation" style="margin-top: 10px;">
+                           <option value="">How you are related to the suspect/victim?</option>
+                           <option value="Family">Family</option>
+                           <option value="Friend">Friend</option>
+                           <option value="Acquaintance">Acquaintance</option>
+                           <option value="Neighbors">Neighbors</option>
+                           <option value="X">Any Other</option>
+                       </select>
+                    </div>
+                    <div class="form-group">
+                        <h3>Some events in recent past with respect to whistle blower</h3>
+                        <select name="death-or-loss" id="death-or-loss" class="form-control" placeholder="Is any death or loss of close relative in family">
+                            <option value="">Is any death or loss of close relative in family</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <select name="family-history" id="family-history" class="form-control" placeholder="Family-history" style="margin-top: 10px;">
+                           <option value="">Is there any family history of any member not being healthy or well (like: Physical and mental, injury related to accident, disability, abuse- Physical or Physiological or any psychological illnesses/disorders) ?</option>
+                           <option value="Yes">Yes</option>
+                           <option value="No">No</option>
+                       </select>
+                       <select name="disruption-relation" id="disruption-relation" class="form-control" placeholder="Educational Qualification" style="margin-top: 10px;">
+                           <option value="">Any disruption of intimate relationships which resulted in arguments, separation etc</option>
+                           <option value="Yes">Yes</option>
+                           <option value="No">No</option>
+                       </select>
+                       <select name="faced-violence" id="faced-violence" class="form-control" placeholder="Violence Faced" style="margin-top: 10px;">
+                           <option value="">Have you faced any violence(domestic, criminal or any other etc.,) ? </option>
+                           <option value="Yes">Yes</option>
+                           <option value="No">No</option>
+                       </select>
+                       <select name="study-disruption" id="study-disruption" class="form-control" placeholder="Disruption in Study" style="margin-top: 10px;">
+                           <option value="">Was there a disruption in studies during you school life etc ?</option>
+                           <option value="Yes">Yes</option>
+                           <option value="No">No</option>
+                       </select>
+                       <select name="information-to-police" id="information-to-police" class="form-control" placeholder="Information to Police or Justice system" style="margin-top: 10px;">
+                           <option value="">Is this the first time that you are providing information to the Justice system,/Police ?</option>
+                           <option value="Yes">Yes</option>
+                           <option value="No">No</option>
+                       </select>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                </form>
+
+                
+                
+            </section>
+            
+        
+    </div>
+<p style="font-size:20px"><center>This website belongs to <b>Ministry of Electronics &amp; Information Technology, GoI.</b> Created and Managed by <b><span style="color:#1c00b5">Team Dark Antrax</span></b></center></p>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/css/styles.css'%}">
+    <title>SIH - Hackathon</title>
+</head>
+<body>
+    <div class="header">
+        <div class="logo-section">
+            <img src="{% static '/img/ashokstambh.png'%}" class="logo" alt="" srcset="">
+            <div class="logo-text">
+                <div class="">Ministry of Electronics and Information Technology</div>
+                <div class="">Government of India</div>
+            </div>
+        </div>
+        <img class="manthan-logo" src="{% static '/img/logo.png'%}" alt="">
+    </div>
+    <div class="ribbon">
+        <marquee behavior="" direction="">The data and Information will be shared to the law Authority only** </marquee>
+         
+    </div>
+    <nav>
+        <div class="nav-content">
+            <a href="">Home</a>
+            <a href="">About</a>
+            <a href="">Contact Us</a>
+            <a href="">Faq</a>
+        </div>
+        <div class="nav-content">
+            <a href="">What are Tipoffs?</a>
+            <a href="">Right to Information</a>
+            <a href="">Languages</a>
+        </div>
+        
+        <div id="google_translate_element"></div>
+        <script type="text/javascript">
+            function googleTranslateElementInit() {
+                new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+            }
+        </script>
+        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    </nav>
+{% block content%}
+{% endblock %}
+    
+    <footer></footer>
+</body>
+</html>

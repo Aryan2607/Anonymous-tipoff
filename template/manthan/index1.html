@@ -1,0 +1,86 @@
+{% extends "./header.html" %}
+{% load static %}
+{% block content%}
+    <section>
+        <h5>INSTRUCTION</h5>
+        <ol>
+            <li>This form/section intends to invite information and tips on violations/manipilations of the social quality and integrity.</li>
+            <li>This site treat all infoemation receives under this section as confidential and does not disclose such information to anyone, unless required by state, regulation or court of law.</li>
+            <li>The individual has to submit their name & email in the form given below.</li>
+        </ol>
+    </section>
+    <div class="map-section">
+        <div class="form-section">.</div>
+        
+            <section class="details">
+                <form action="./addtipoff" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                       <select name="state" type="text" class="form-control" placeholder="State">
+                         <option value="">Select a state...</option>
+                         <option value="AN">Andaman and Nicobar Islands</option>
+                         <option value="AP">Andhra Pradesh</option>
+                         <option value="AR">Arunanchal Pradesh</option>
+                         <option value="AS">Assam</option>
+                         <option value="BR">Bihar</option>
+                         <option value="CH">Chandigarh</option>
+                         <option value="CG">Chhattisgarh</option>
+                         <option value="DN">Dadra and Nagar Haveli</option>
+                         <option value="DD">Daman and Diu</option>
+                         <option value="DL">Delhi</option>
+                         <option value="GA">Goa</option>
+                         <option value="GJ">Gujrat</option>
+                         <option value="HR">Haryana</option>
+                         <option value="HP">Himanchal Pradesh</option>
+                         <option value="JK">Jammu and Kashmir</option>
+                         <option value="JH">Jharkhand</option>
+                         <option value="KA">Karnataka</option>
+                         <option value="KL">Kerala</option>
+                         <option value="LA">Ladakh</option>
+                         <option value="LD">Lakshadweep</option>
+                         <option value="MP">Madhya Pradesh</option>
+                         <option value="MH">Maharashtra</option>
+                         <option value="MN">Manipur</option>
+                         <option value="ML">Meghalaya</option>
+                         <option value="MZ">Mizoram</option>
+                         <option value="NL">Nagaland</option>
+                         <option value="OD">Odisha</option>
+                         <option value="PB">Punjab</option>
+                         <option value="PY">Puduvherry</option>
+                         <option value="RJ">Rajasthan</option>
+                         <option value="SK">Sikkim</option>
+                         <option value="TN">Tamil Nadu</option>
+                         <option value="TS">Telangana</option>
+                         <option value="TR">Tripura</option>
+                         <option value="UP">Uttar Pradesh</option>
+                         <option value="UK">Uttarakhand</option>
+                         <option value="WB">West Bengal</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                        <input name="district" type="text" class="form-control" placeholder="District">
+                    </div>
+                    <div class="form-group">
+                        <input name="pincode" type="number" class="form-control" placeholder="Pin Code">
+                    </div>
+                    <div class="form-group">
+                        <select name="incidence" class="form-control" placeholder="Choose the Nature of Incidence...">
+                            <option value="">Select the Nature of Incidence...</option>
+                            <option value="Criminal">Criminal</option>
+                            <option value="Theft">Theft</option>
+                            <option value="Cyber">Cyber Related</option>
+                            <option value="Homicide">Homicide</option>
+                            <option value="Terrorism">Terrorism Attack</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" class="form-control" id="" cols="30" rows="10" placeholder="Message"></textarea>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Next</button>
+                </form>
+                
+            </section>
+            
+        
+    </div>
+{% endblock %}

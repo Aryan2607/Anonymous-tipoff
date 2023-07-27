@@ -1,0 +1,101 @@
+/*--------------------------CREATED BY------------------------- */
+/*--------------------------DARK ANTRAX-------------------------*/
+
+*{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.header{
+    display: flex;
+    background-color: rgb(221, 220, 220);
+    padding: 1.2rem;
+    justify-content: space-between;
+    box-shadow: 2px 2px 8px #f0f0f0;
+}
+.logo-section{
+    display: flex;
+    align-items: center;
+}
+.logo{
+    height:6rem;
+    border-radius: 0.6rem;
+}
+.manthan-logo{
+    height:6rem
+}
+.logo-text{
+    padding-left:1.2rem ;
+    font-weight: 700;
+}
+
+.ribbon{
+    background-color: rgb(240, 240, 22);
+    text-transform: uppercase;
+}
+nav{
+    display: flex;
+    justify-content: space-between;
+    margin: 0.8rem 0;
+    align-items: center;
+}
+nav a{
+    text-decoration: none;
+}
+
+nav .nav-content a{
+    padding: 0 0.4rem ;
+    color:#000000;
+    font-weight: 600;
+
+}
+
+.btn{
+    padding:0.4rem 1.2rem;
+    border-radius: 0.4rem;
+    font-weight: 700;
+    
+    
+}
+.btn , .btn-success{
+    background-color: rgb(20, 190, 20);
+    color:white;
+}
+.special{
+    color:rgb(248, 71, 71)
+}
+.form-group{
+    margin:  0.6rem 0;
+}
+.map-section{
+     width:100%;
+     display:flex;
+}
+.form-section{
+width:50%;
+background-color: #000000;
+border-radius: 1.2rem;
+margin:0 1.2rem ;
+
+}
+.details{
+    /* display: flex;
+    flex-direction: column; */
+    flex-grow:100;
+    padding: 0 0.4rem;
+    width: 50%;
+     
+}
+.form-group .form-control{
+    
+    box-sizing: border-box;
+    border-style: none;
+    box-shadow: 2px 2px 8px #d8d7d7;
+    padding: 0.6rem 1.2rem ;
+    border-radius: 0.4rem;
+    width: 100%;
+}
+button , .btn{
+    border:none;
+}
+footer{
+    height:12rem;
+}
